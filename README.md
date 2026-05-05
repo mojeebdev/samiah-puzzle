@@ -22,5 +22,5 @@ A custom-built, mobile-responsive puzzle game created as a special 27th birthday
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/samiah-puzzle.git
+   git clone https://github.com/mojeebdev/samiah-puzzle.git
    cd samiah-puzzle
