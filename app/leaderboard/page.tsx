@@ -8,33 +8,73 @@ export default function LeaderboardPage() {
   const [scores, setScores] = useState<any[]>([]);
 
   useEffect(() => {
-    const q = query(collection(db, "leaderboard"), orderBy("time", "asc"), limit(20));
+    const q = query(collection(db, "leaderboard"), orderBy("time", "asc"), limit(10));
     return onSnapshot(q, (snapshot) => {
       setScores(snapshot.docs.map(doc => doc.data()));
     });
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-6">
-      <div className="max-w-md w-full bg-white rounded-[40px] p-8 shadow-xl">
-        <h1 className="text-3xl font-black text-center mb-8 text-gray-800 italic">RANKINGS 🏆</h1>
+    <div style={{...styles.container, backgroundColor: '#f0f9ff'}}>
+      <div style={styles.card}>
+        <h1 style={styles.title}>Fastest Friends 🏆</h1>
         
-        <div className="space-y-4">
+        <div style={styles.list}>
           {scores.map((s, i) => (
-            <div key={i} className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl border-b-2 border-gray-100">
-              <div className="flex items-center gap-4">
-                <span className={`text-xl font-bold ${i < 3 ? 'text-yellow-500' : 'text-gray-300'}`}>#{i + 1}</span>
-                <span className="font-semibold text-gray-700">{s.name}</span>
+            <div key={i} style={styles.item}>
+              <div style={styles.nameSection}>
+                <span style={i < 3 ? styles.topRank : styles.rank}>#{i + 1}</span>
+                <span style={styles.name}>{s.name}</span>
               </div>
-              <span className="font-mono text-pink-500 font-bold">{s.time}s</span>
+              <span style={styles.time}>{s.time}s</span>
             </div>
           ))}
+          {scores.length === 0 && <p style={styles.empty}>No scores yet. Be the first!</p>}
         </div>
 
-        <Link href="/" className="block text-center mt-10 text-pink-500 font-bold hover:underline">
-          ← Back to Game
-        </Link>
+        <Link href="/game" style={styles.backLink}>← Play Again</Link>
+
+        {/* YOUR CREDIT SECTION */}
+        <div style={styles.creditBox}>
+          <p style={styles.creditMain}>
+            Built by <b>mojeeb</b> (<a href="https://mojeeb.xyz" style={styles.blueLink}>mojeeb.xyz</a>)
+          </p>
+          <p style={styles.creditSub}>
+            Founder of <b>Blindspotlab</b> (<a href="https://blindspotlab.xyz" style={styles.blueLink}>blindspotlab.xyz</a>)
+          </p>
+          <p style={styles.contact}>
+            For custom gifts: <a href="https://x.com/mojeebeth" style={styles.pinkLink}>@mojeebeth</a> on X/Telegram
+          </p>
+        </div>
       </div>
     </div>
   );
 }
+
+const styles: any = {
+  container: { backgroundColor: '#f0f9ff', minHeight: '100vh', display: 'flex', justifyContent: 'center', padding: '20px', fontFamily: 'sans-serif' },
+  card: { backgroundColor: '#fff', padding: '30px', borderRadius: '30px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', width: '100%', maxWidth: '400px', height: 'fit-content' },
+  title: { textAlign: 'center', color: '#1e40af', fontSize: '24px', marginBottom: '30px', fontWeight: '900' },
+  list: { display: 'flex', flexDirection: 'column', gap: '10px' },
+  item: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 15px', backgroundColor: '#dbeafe', borderRadius: '15px' },
+  nameSection: { display: 'flex', alignItems: 'center', gap: '12px' },
+  topRank: { color: '#f59e0b', fontWeight: 'bold', fontSize: '18px' },
+  rank: { color: '#94a3b8', fontWeight: 'bold' },
+  name: { fontWeight: '600', color: '#334155' },
+  time: { fontWeight: 'bold', color: '#1e40af', fontFamily: 'monospace' },
+  empty: { textAlign: 'center', color: '#94a3b8', fontStyle: 'italic' },
+  backLink: { display: 'block', textAlign: 'center', marginTop: '20px', color: '#1e40af', fontWeight: 'bold', textDecoration: 'none' },
+  
+  // CREDIT STYLES
+  creditBox: {
+    marginTop: '40px',
+    paddingTop: '20px',
+    borderTop: '1px solid #dbeafe',
+    textAlign: 'center',
+  },
+  creditMain: { fontSize: '13px', color: '#475569', margin: '0 0 5px 0' },
+  creditSub: { fontSize: '12px', color: '#64748b', margin: '0 0 10px 0' },
+  contact: { fontSize: '11px', color: '#94a3b8', margin: '0' },
+  blueLink: { color: '#3b82f6', textDecoration: 'none' },
+  pinkLink: { color: '#1e40af', textDecoration: 'none', fontWeight: 'bold' },
+};

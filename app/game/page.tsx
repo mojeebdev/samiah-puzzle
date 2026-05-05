@@ -53,7 +53,7 @@ export default function GamePage() {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={{...styles.container, backgroundColor: '#f0f9ff'}}>
       {/* Header Info */}
       <div style={styles.header}>
         <div>
@@ -82,7 +82,7 @@ export default function GamePage() {
                 backgroundSize: '300% 900%', // 3x width, 9x height
                 // Precise positioning for 3x9
                 backgroundPosition: `${(column * 100) / 2}% ${(row * 100) / 8}%`,
-                border: selected === i ? '3px solid #ec4899' : '0.5px solid rgba(255,255,255,0.3)',
+                border: selected === i ? '3px solid #3b82f6' : '0.5px solid rgba(255,255,255,0.3)',
                 opacity: selected === i ? 0.7 : 1,
                 transform: selected === i ? 'scale(0.96)' : 'scale(1)',
               }}
