@@ -53,7 +53,7 @@ export default function GamePage() {
   };
 
   return (
-    <div style={{...styles.container, backgroundColor: '#f0f9ff'}}>
+    <div style={{...styles.container, backgroundColor: '#eff6ff'}}>
       {/* Header Info */}
       <div style={styles.header}>
         <div>
@@ -101,7 +101,7 @@ export default function GamePage() {
 
 const styles: any = {
   container: {
-    backgroundColor: '#fff5f7',
+    backgroundColor: '#eff6ff',
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
@@ -123,7 +123,7 @@ const styles: any = {
   birthdayText: {
     fontSize: '22px',
     margin: 0,
-    color: '#be185d',
+    color: '#1e40af',
     fontWeight: '800'
   },
   playerText: {
@@ -132,7 +132,7 @@ const styles: any = {
     color: '#666'
   },
   lbBtn: {
-    backgroundColor: '#be185d',
+    backgroundColor: '#2563eb',
     color: 'white',
     border: 'none',
     padding: '8px 16px',
@@ -145,7 +145,7 @@ const styles: any = {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
     gap: '1px',
-    backgroundColor: '#be185d', 
+    backgroundColor: '#2563eb', 
     padding: '2px',
     borderRadius: '8px',
     width: '100%',
@@ -160,7 +160,7 @@ const styles: any = {
   instructions: {
     marginTop: '20px',
     textAlign: 'center',
-    color: '#db2777',
+    color: '#1e40af',
     fontSize: '14px',
     fontWeight: '500'
   }
